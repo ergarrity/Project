@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<script type="module">
+  // Load the Observable runtime and inspector.
+  import {Runtime, Inspector} from "https://unpkg.com/@observablehq/notebook-runtime?module";
+
+  // Your notebook, compiled as an ES module.
+  import notebook from "https://api.observablehq.com/@ergarrity/oregon-k-12-student-homelessness-statistics.js";
+
+
+Runtime.load(notebook, Inspector.into(document.body));
+
+</script>
+
+    <h1>Coos County Statistics</h1>
+
+
+    
+
+{% endblock %}
