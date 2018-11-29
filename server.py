@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, jsonify
 
 
 app = Flask(__name__)
@@ -9,259 +9,298 @@ def index():
 
     return render_template("homepage.html")
 
+@app.route('/counties')
+def map():
+  """Show map of Oregon with a marker for each county"""
 
-@app.route('/baker')
-def baker_stats():
-  """Show statistics for Baker County"""
+  return render_template("map.html")
 
-  return render_template("baker.html")
+@app.route('/counties.json')
+def county_info_json():
+  """JSON information about counties"""
 
+  counties = [
+    {"name": "county1"},
+    {"name": "county2"}
+  ]
 
-@app.route('/benton')
-def benton_stats():
-  """Show statistics for Benton County"""
+  return jsonify({"counties": counties})
 
-  return render_template("benton.html")
+@app.route('/counties/all')
+def county_info():
+  """JSON information about counties"""
 
+  counties = [
+    {"name": "county1"},
+    {"name": "county2"}
+  ]
 
-@app.route('/clackamas')
-def clackamas_stats():
-  """Show statistics for Clackamas County"""
+  return render_template("counties.html")
 
-  return render_template("clackamas.html")
 
 
-@app.route('/clatsop')
-def clatsop_stats():
-  """Show statistics for Clatsop County"""
 
-  return render_template("clatsop.html")
 
+# @app.route('/counties/<county>')
+# def county_stats():
+#   """Show statistics for each county"""
+#   county = County.query.get(county)
 
-@app.route('/columbia')
-def columbia_stats():
-  """Show statistics for Columbia County"""
+#   return render_template("counties/detail.html")
 
-  return render_template("columbia.html")
 
+# @app.route('/baker')
+# def baker_stats():
+#   """Show statistics for Baker County"""
 
-@app.route('/coos')
-def coos_stats():
-  """Show statistics for Coos County"""
+#   return render_template("baker.html")
 
-  return render_template("coos.html")
 
+# @app.route('/benton')
+# def benton_stats():
+#   """Show statistics for Benton County"""
 
-@app.route('/crook')
-def crook_stats():
-  """Show statistics for Crook County"""
+#   return render_template("benton.html")
 
-  return render_template("crook.html")
 
+# @app.route('/clackamas')
+# def clackamas_stats():
+#   """Show statistics for Clackamas County"""
 
-@app.route('/curry')
-def curry_stats():
-  """Show statistics for Curry County"""
+#   return render_template("clackamas.html")
 
-  return render_template("curry.html")
 
+# @app.route('/clatsop')
+# def clatsop_stats():
+#   """Show statistics for Clatsop County"""
 
-@app.route('/deschutes')
-def deschutes_stats():
-  """Show statistics for Deschutes County"""
+#   return render_template("clatsop.html")
 
-  return render_template("deschutes.html")
 
+# @app.route('/columbia')
+# def columbia_stats():
+#   """Show statistics for Columbia County"""
 
-@app.route('/douglas')
-def douglas_stats():
-  """Show statistics for Douglas County"""
+#   return render_template("columbia.html")
 
-  return render_template("douglas.html")
 
+# @app.route('/coos')
+# def coos_stats():
+#   """Show statistics for Coos County"""
 
-@app.route('/gilliam')
-def gilliam_stats():
-  """Show statistics for Gilliam County"""
+#   return render_template("coos.html")
 
-  return render_template("gilliam.html")
 
+# @app.route('/crook')
+# def crook_stats():
+#   """Show statistics for Crook County"""
 
-@app.route('/grant')
-def grant_stats():
-  """Show statistics for Grant County"""
+#   return render_template("crook.html")
 
-  return render_template("grant.html")
 
+# @app.route('/curry')
+# def curry_stats():
+#   """Show statistics for Curry County"""
 
-@app.route('/harney')
-def harney_stats():
-  """Show statistics for Harney County"""
+#   return render_template("curry.html")
 
-  return render_template("harney.html")
 
+# @app.route('/deschutes')
+# def deschutes_stats():
+#   """Show statistics for Deschutes County"""
 
-@app.route('/hoodriver')
-def hood_river_stats():
-  """Show statistics for Hood River County"""
+#   return render_template("deschutes.html")
 
-  return render_template("hoodriver.html")
 
+# @app.route('/douglas')
+# def douglas_stats():
+#   """Show statistics for Douglas County"""
 
-@app.route('/jackson')
-def jackson_stats():
-  """Show statistics for Jackson County"""
+#   return render_template("douglas.html")
 
-  return render_template("jackson.html")
 
+# @app.route('/gilliam')
+# def gilliam_stats():
+#   """Show statistics for Gilliam County"""
 
-@app.route('/jefferson')
-def jefferson_stats():
-  """Show statistics for Jefferson County"""
+#   return render_template("gilliam.html")
 
-  return render_template("jefferson.html")
 
+# @app.route('/grant')
+# def grant_stats():
+#   """Show statistics for Grant County"""
 
-@app.route('/josephine')
-def josephine_stats():
-  """Show statistics for Josephine County"""
+#   return render_template("grant.html")
 
-  return render_template("josephine.html")
 
+# @app.route('/harney')
+# def harney_stats():
+#   """Show statistics for Harney County"""
 
-@app.route('/klamath')
-def klamath_stats():
-  """Show statistics for Klamath County"""
+#   return render_template("harney.html")
 
-  return render_template("klamath.html")
 
+# @app.route('/hoodriver')
+# def hood_river_stats():
+#   """Show statistics for Hood River County"""
 
-@app.route('/lake')
-def lake_stats():
-  """Show statistics for Lake County"""
+#   return render_template("hoodriver.html")
 
-  return render_template("lake.html")
 
+# @app.route('/jackson')
+# def jackson_stats():
+#   """Show statistics for Jackson County"""
 
-@app.route('/lane')
-def lane_stats():
-  """Show statistics for Lane County"""
+#   return render_template("jackson.html")
 
-  return render_template("lane.html")
 
+# @app.route('/jefferson')
+# def jefferson_stats():
+#   """Show statistics for Jefferson County"""
 
-@app.route('/lincoln')
-def lincoln_stats():
-  """Show statistics for Lincoln County"""
+#   return render_template("jefferson.html")
 
-  return render_template("lincoln.html")
 
+# @app.route('/josephine')
+# def josephine_stats():
+#   """Show statistics for Josephine County"""
 
-@app.route('/linn')
-def linn_stats():
-  """Show statistics for Linn County"""
+#   return render_template("josephine.html")
 
-  return render_template("linn.html")
 
+# @app.route('/klamath')
+# def klamath_stats():
+#   """Show statistics for Klamath County"""
 
-@app.route('/malheur')
-def malheur_stats():
-  """Show statistics for Malheur County"""
+#   return render_template("klamath.html")
 
-  return render_template("malheur.html")
 
+# @app.route('/lake')
+# def lake_stats():
+#   """Show statistics for Lake County"""
 
-@app.route('/marion')
-def marion_stats():
-  """Show statistics for Marion County"""
+#   return render_template("lake.html")
 
-  return render_template("marion.html")
 
+# @app.route('/lane')
+# def lane_stats():
+#   """Show statistics for Lane County"""
 
-@app.route('/morrow')
-def morrow_stats():
-  """Show statistics for Morrow County"""
+#   return render_template("lane.html")
 
-  return render_template("morrow.html")
 
+# @app.route('/lincoln')
+# def lincoln_stats():
+#   """Show statistics for Lincoln County"""
 
-@app.route('/multnomah')
-def multnomah_stats():
-  """Show statistics for Multnomah County"""
+#   return render_template("lincoln.html")
 
-  return render_template("multnomah.html")
 
+# @app.route('/linn')
+# def linn_stats():
+#   """Show statistics for Linn County"""
 
-@app.route('/polk')
-def polk_stats():
-  """Show statistics for Polk County"""
+#   return render_template("linn.html")
 
-  return render_template("polk.html")
 
+# @app.route('/malheur')
+# def malheur_stats():
+#   """Show statistics for Malheur County"""
 
-@app.route('/sherman')
-def sherman_stats():
-  """Show statistics for Sherman County"""
+#   return render_template("malheur.html")
 
-  return render_template("sherman.html")
 
+# @app.route('/marion')
+# def marion_stats():
+#   """Show statistics for Marion County"""
 
-@app.route('/tillamook')
-def tillamook_stats():
-  """Show statistics for Tillamook County"""
+#   return render_template("marion.html")
 
-  return render_template("tillamook.html")
 
+# @app.route('/morrow')
+# def morrow_stats():
+#   """Show statistics for Morrow County"""
 
-@app.route('/umatilla')
-def umatilla_stats():
-  """Show statistics for Umatilla County"""
+#   return render_template("morrow.html")
 
-  return render_template("umatilla.html")
 
+# @app.route('/multnomah')
+# def multnomah_stats():
+#   """Show statistics for Multnomah County"""
 
-@app.route('/union')
-def union_stats():
-  """Show statistics for Union County"""
+#   return render_template("multnomah.html")
 
-  return render_template("union.html")
 
+# @app.route('/polk')
+# def polk_stats():
+#   """Show statistics for Polk County"""
 
-@app.route('/wallowa')
-def wallowa_stats():
-  """Show statistics for Wallowa County"""
+#   return render_template("polk.html")
 
-  return render_template("wallowa.html")
 
+# @app.route('/sherman')
+# def sherman_stats():
+#   """Show statistics for Sherman County"""
 
-@app.route('/wasco')
-def wasco_stats():
-  """Show statistics for Wasco County"""
+#   return render_template("sherman.html")
 
-  return render_template("wasco.html")
 
+# @app.route('/tillamook')
+# def tillamook_stats():
+#   """Show statistics for Tillamook County"""
 
-@app.route('/washington')
-def washington_stats():
-  """Show statistics for Washington County"""
+#   return render_template("tillamook.html")
 
-  return render_template("washington.html")
 
+# @app.route('/umatilla')
+# def umatilla_stats():
+#   """Show statistics for Umatilla County"""
 
-@app.route('/wheeler')
-def wheeler_stats():
-  """Show statistics for Wheeler County"""
+#   return render_template("umatilla.html")
 
-  return render_template("wheeler.html")
 
+# @app.route('/union')
+# def union_stats():
+#   """Show statistics for Union County"""
 
-@app.route('/yamhill')
-def yamhill_stats():
-  """Show statistics for Yamhill County"""
+#   return render_template("union.html")
 
-  return render_template("yamhill.html")
+
+# @app.route('/wallowa')
+# def wallowa_stats():
+#   """Show statistics for Wallowa County"""
+
+#   return render_template("wallowa.html")
+
+
+# @app.route('/wasco')
+# def wasco_stats():
+#   """Show statistics for Wasco County"""
+
+#   return render_template("wasco.html")
+
+
+# @app.route('/washington')
+# def washington_stats():
+#   """Show statistics for Washington County"""
+
+#   return render_template("washington.html")
+
+
+# @app.route('/wheeler')
+# def wheeler_stats():
+#   """Show statistics for Wheeler County"""
+
+#   return render_template("wheeler.html")
+
+
+# @app.route('/yamhill')
+# def yamhill_stats():
+#   """Show statistics for Yamhill County"""
+
+#   return render_template("yamhill.html")
 
 
 
 if __name__ == "__main__":
-    app.run(debug=True, host='0.0.0.0', port=5012)
+    app.run(debug=True, host='0.0.0.0', port=5001)

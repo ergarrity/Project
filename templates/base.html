@@ -2,8 +2,10 @@
 <html>
 <head>
   <title>{% block title %}OREGON STUFF (will change this){% endblock %}</title>
+
   <link rel="stylesheet" href="/static/css/styles.css">
   <script src="http://code.jquery.com/jquery.js"></script>
+    {% block head %} {% endblock %}
 </head>
 <body>
   {% block content %}BODY CONTENT GOES HERE{% endblock %}
