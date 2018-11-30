@@ -5,7 +5,7 @@ from server import app
 
 #---------------------------------------------------------------------#
 
-def get_counties():
+def get_counties(): #works
     """Load counties from dataset into database."""
 
     for i, row in enumerate(open('data/counties_data.csv')):
@@ -22,14 +22,29 @@ def get_counties():
     db.session.commit()
 
 
-def get_districts():
+def get_districts(): #doesn't work
+# how to avoid adding same district twice
+# how to seed foreign key columns
     """Load districts from dataset into database."""
 
     for i, row in enumerate(open('data/student_counts.csv')):
         data = row.rstrip().split(",")
         district_name = data[0]
+        county = data[1]
 
-def get_groups():
+        if District.query.filter_by(district_name=district_name).first():
+            continue
+
+        county_id = County.query.filter_by(county_name=county).first().county_id
+
+        district = District(district_name=district_name, county_id=county_id)
+
+        db.session.add(district)
+
+    db.session.commit()
+
+
+def get_groups(): #works
     """Load groups from list into database."""
 
     groups = ["sheltered", "unsheltered", "sharing", "motel"]
@@ -42,12 +57,12 @@ def get_groups():
     db.session.commit()
 
 
-def get_districtgroups():
+def get_districtgroups(): #doesn't work (haven't really tried yet)
     """Load districtgroup data from dataset into database"""
 
     for i, row in enumerate(open('data/student_counts.csv')):
         data = row.rstrip().split(",")
-        
+
 
 
 
@@ -60,3 +75,5 @@ if __name__ == '__main__':
     get_counties()
 
     get_groups()
+
+    get_districts()

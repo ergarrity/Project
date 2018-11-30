@@ -47,7 +47,7 @@ class District(db.Model):
     __tablename__ = "districts"
 
     district_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    district_name = db.Column(db.String(100), nullable=False)
+    district_name = db.Column(db.String(100), unique=True, nullable=False)
     county_id = db.Column(db.Integer, db.ForeignKey('counties.county_id'))
 
     county = db.relationship("County", backref=db.backref("districts"))
