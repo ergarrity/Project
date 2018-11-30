@@ -32,7 +32,13 @@ class County(db.Model):
     county_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     county_name = db.Column(db.String(50), nullable=False)
     latitude = db.Column(db.Float, nullable=False)
-    longitude = db.Column(db.Float, nullable=False)
+    longitude = db.Column(db.Float, nullable=False) #to do change from float to string
+
+    def __repr__(self):
+        """Provide helpful representation when printed"""
+
+        return "<County county_id={}, county_name={}, latitude={}, longitude={}>".format(
+            self.county_id, self.county_name, self.latitude, self.longitude)
 
 
 class District(db.Model):
@@ -42,6 +48,18 @@ class District(db.Model):
 
     district_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     district_name = db.Column(db.String(100), nullable=False)
+    county_id = db.Column(db.Integer, db.ForeignKey('counties.county_id'))
+
+    county = db.relationship("County", backref=db.backref("districts"))
+
+
+
+    def __repr__(self):
+        """Provide helpful representation when printed"""
+
+        return "<District district_id={}, district_name={}>".format(
+            self.district_id, self.district_name)
+
 
 
 class Group(db.Model):
@@ -52,11 +70,35 @@ class Group(db.Model):
     group_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     group_name = db.Column(db.String(50), nullable=False)
 
+    def __repr__(self):
+        """Provide helpful representation when printed"""
+
+        return "<Group group_id={}, group_name={}>".format(
+            self.group_id, self.group_name)
+
+
+
+class DistrictGroup(db.Model):
+
+    __tablename__ = "district_groups"
+
+    district_group_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    group_id = db.Column(db.Integer, db.ForeignKey('groups.group_id'))
+    district_id = db.Column(db.Integer, db.ForeignKey('districts.district_id'))
+    student_count = db.Column(db.Integer)
+    year = db.Column(db.Integer)
+
+    # Define relationship to group
+    group = db.relationship("Group", backref=db.backref("districtgroups", order_by=group_id))
+
+    # Define relationship to district
+    district = db.relationship("District", backref=db.backref("districtgroups", order_by=district_id))
+
 
 def connect_to_db(app):
     """Connect the database to Flask app."""
 
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///counties'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///hbpj'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     db.app = app
     db.init_app(app)
@@ -65,4 +107,5 @@ def connect_to_db(app):
 if __name__ == "__main__":
     from server import app
     connect_to_db(app)
+    db.create_all()
     print("Connected to DB.")
