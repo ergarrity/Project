@@ -23,8 +23,6 @@ def get_counties(): #works
 
 
 def get_districts(): #doesn't work
-# how to avoid adding same district twice
-# how to seed foreign key columns
     """Load districts from dataset into database."""
 
     for i, row in enumerate(open('data/student_counts.csv')):
@@ -47,7 +45,7 @@ def get_districts(): #doesn't work
 def get_groups(): #works
     """Load groups from list into database."""
 
-    groups = ["sheltered", "unsheltered", "sharing", "motel"]
+    groups = ["shelter", "sharing", "unsheltered", "motel"]
 
     for item in groups:
         group = Group(group_name=item)
@@ -58,10 +56,38 @@ def get_groups(): #works
 
 
 def get_districtgroups(): #doesn't work (haven't really tried yet)
+# columns in districtgroups: district_group_id*, group_id, district_id, student_count, year
     """Load districtgroup data from dataset into database"""
+
+    group_ids = {"shelter": 1, "sharing":2 , "unsheltered":3, "motel":4}
 
     for i, row in enumerate(open('data/student_counts.csv')):
         data = row.rstrip().split(",")
+
+        (district_name, county_name, total_count, shelter_count, sharing_count, 
+        unsheltered_count, motel_count, year) = data
+
+        district_id = District.query.filter_by(district_name=district_name).first().district_id
+        
+        # add shelter stat
+        dg1 = DistrictGroup(group_id=group_ids["shelter"], district_id=district_id, student_count=shelter_count, year=year)
+
+        # add sharing stat
+        dg2 = DistrictGroup(group_id=group_ids["sharing"], district_id=district_id, student_count=sharing_count, year=year)
+
+        # add unsheltered stat
+        dg3 = DistrictGroup(group_id=group_ids["unsheltered"], district_id=district_id, student_count=unsheltered_count, year=year)
+
+        # add motel stat
+        dg4 = DistrictGroup(group_id=group_ids["motel"], district_id=district_id, student_count=motel_count, year=year)
+
+        db.session.add(dg1)
+        db.session.add(dg2)
+        db.session.add(dg3)
+        db.session.add(dg4)
+
+    db.session.commit()
+
 
 
 
@@ -77,3 +103,5 @@ if __name__ == '__main__':
     get_groups()
 
     get_districts()
+
+    get_districtgroups()
