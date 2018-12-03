@@ -5,7 +5,7 @@ from server import app
 
 #---------------------------------------------------------------------#
 
-def get_counties(): #works
+def get_counties():
     """Load counties from dataset into database."""
 
     for i, row in enumerate(open('data/counties_data.csv')):
@@ -22,7 +22,10 @@ def get_counties(): #works
     db.session.commit()
 
 
-def get_districts(): #doesn't work
+def get_districts(): # sort of works... getting duplicates on districts which 
+# should be taken care of by conditional in for loop. Doesn't impact
+# implementation, but would be good to figure out why this isn't working
+# the way i think it should
     """Load districts from dataset into database."""
 
     for i, row in enumerate(open('data/student_counts.csv')):
@@ -42,7 +45,7 @@ def get_districts(): #doesn't work
     db.session.commit()
 
 
-def get_groups(): #works
+def get_groups():
     """Load groups from list into database."""
 
     groups = ["shelter", "sharing", "unsheltered", "motel"]
@@ -55,8 +58,7 @@ def get_groups(): #works
     db.session.commit()
 
 
-def get_districtgroups(): #doesn't work (haven't really tried yet)
-# columns in districtgroups: district_group_id*, group_id, district_id, student_count, year
+def get_districtgroups():
     """Load districtgroup data from dataset into database"""
 
     group_ids = {"shelter": 1, "sharing":2 , "unsheltered":3, "motel":4}
