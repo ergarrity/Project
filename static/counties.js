@@ -90,38 +90,24 @@ function initMap() {
           position: new google.maps.LatLng(county.latitude, county.longitude),
           map: map,
           title: county.county_name,
-        })}
+        })
 
+        html = (
+          '<div class="window-content">' +
+                '<img src="/static/img/polarbear.jpg" alt="polarbear" style="width:150px;" class="thumbnail">' +
+                '<p><b>County: </b>' + county.county_name + '</p>' +
+          '</div>');
 
-    //         // Define the content of the infoWindow
-    //         html = (
-    //           '<div class="window-content">' +
-    //                 '<img src="/static/img/polarbear.jpg" alt="polarbear" style="width:150px;" class="thumbnail">' +
-    //                 // '<p><b>Bear gender: </b>' + bear.gender + '</p>' +
-    //                 // '<p><b>Bear birth year: </b>' + bear.birthYear + '</p>' +
-    //                 // '<p><b>Year captured: </b>' + bear.capYear + '</p>' +
-    //                 // '<p><b>Collared: </b>' + bear.collared + '</p>' +
-    //                 // '<p><b>Location: </b>' + marker.position + '</p>' +
-    //           '</div>');
+        bindInfoWindow(marker, map, infoWindow, html);
+      }
 
-    //         // Inside the loop we call bindInfoWindow passing it the marker,
-    //         // map, infoWindow and contentString
-    //         bindInfoWindow(marker, map, infoWindow, html);
-    //   }
-
-    // });
-
-    // This function is outside the for loop.
-    // When a marker is clicked it closes any currently open infowindows
-//     // Sets the content for the new marker with the content passed through
-//     // then it open the infoWindow with the new content on the marker that's clicked
-//     function bindInfoWindow(marker, map, infoWindow, html) {
-//         google.maps.event.addListener(marker, 'click', function () {
-//             infoWindow.close();
-//             infoWindow.setContent(html);
-//             infoWindow.open(map, marker);
-//         });
-//     }
+      function bindInfoWindow(marker, map, infoWindow, html) {
+        google.maps.event.addListener(marker, 'click', function(){
+          infoWindow.close();
+          infoWindow.setContent(html);
+          infoWindow.open(map, marker);
+        });
+      }
 }
 
 google.maps.event.addDomListener(window, 'load', initMap);
