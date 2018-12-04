@@ -1,3 +1,9 @@
+// Load the Visualization API and the corechart package.
+google.charts.load('current', {'packages':['corechart']});
+
+// Set a callback to run when the Google Visualization API is loaded.
+// google.charts.setOnLoadCallback(drawChart);
+
 function initMap() {
   console.log("hi i loaded");
 
@@ -41,6 +47,7 @@ function initMap() {
         width: 150
     });
 
+
     // Retrieving the information with AJAX
     $.get('/counties.json', function (counties) {
 
@@ -55,6 +62,7 @@ function initMap() {
           title: county.county_name,
         });
 
+
         html = (
           '<div class="window-content">' +
                 '<img src="/static/img/polarbear.jpg" alt="polarbear" style="width:150px;" class="thumbnail">' +
@@ -63,6 +71,7 @@ function initMap() {
 
         bindInfoWindow(marker, map, infoWindow, html);
       }
+
     });
 
       function bindInfoWindow(marker, map, infoWindow, html) {
