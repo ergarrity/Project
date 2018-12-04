@@ -15,6 +15,7 @@ class County(db.Model):
     county_name = db.Column(db.String(50), nullable=False)
     latitude = db.Column(db.Float, nullable=False)
     longitude = db.Column(db.Float, nullable=False) #to do change from float to string
+    county_name_lower = db.Column(db.String(50), nullable=False)
 
     def __repr__(self):
         """Provide helpful representation when printed"""

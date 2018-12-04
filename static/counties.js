@@ -62,11 +62,10 @@ function initMap() {
           title: county.county_name,
         });
 
-
         html = (
           '<div class="window-content">' +
-                '<img src="/static/img/polarbear.jpg" alt="polarbear" style="width:150px;" class="thumbnail">' +
                 '<p><b>County: </b>' + county.county_name + '</p>' +
+                '<a href="/' + county.county_name_lower + '">' + county.county_name + '</a>' +
           '</div>');
 
         bindInfoWindow(marker, map, infoWindow, html);

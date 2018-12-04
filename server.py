@@ -37,11 +37,18 @@ def county_info_json():
       county.county_id: {
       "county_name": county.county_name,
       "latitude": county.latitude,
-      "longitude": county.longitude
+      "longitude": county.longitude,
+      "county_name_lower": county.county_name_lower
       }
       for county in County.query.limit(36)}
 
   return jsonify(counties)
+
+@app.route('/statewide')
+def statewide_statistics():
+  """Show charts for statewide statistics"""
+
+  return render_template("statewide.html")
 
 
 # @app.route('/counties/all')

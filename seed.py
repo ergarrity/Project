@@ -10,9 +10,9 @@ def get_counties():
 
     for i, row in enumerate(open('data/counties_data.csv')):
         data = row.rstrip().split(",")
-        county_name, latitude, longitude = data
+        county_name, latitude, longitude, county_name_lower = data
 
-        county = County(county_name=county_name, latitude=latitude, longitude=longitude)
+        county = County(county_name=county_name, latitude=latitude, longitude=longitude, county_name_lower=county_name_lower)
 
         db.session.add(county)
 
