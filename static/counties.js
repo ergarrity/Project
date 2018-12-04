@@ -47,7 +47,7 @@ function initMap() {
     });
 
     // Retrieving the information with AJAX
-    // $.get('/counties.json', function (response) {
+    $.get('/counties.json', function (counties) {
     // //   // Attach markers to each bear location in returned JSON
     // //   // JSON looks like:
     // //   // {
@@ -62,35 +62,36 @@ function initMap() {
     // //   //   },...
     // //   // }
       
-    //   let counties = response.counties;
+      // let counties = response.counties;
 
-      counties = {
-        "1": {
-          "county_name": "Baker",
-          "latitude": "44.776800",
-          "longitude": "-117.83383"
-        },
-        "2": {
-          "county_name": "Benton",
-          "latitude" : "44.56541",
-          "longitude": "-123.26214"
-        },
-        "3": {
-          "county_name": "Clackamas",
-          "latitude": "45.359449",
-          "longitude": "-122.60234"
-        }
-      }
+      // counties = {
+      //   "1": {
+      //     "county_name": "Baker",
+      //     "latitude": "44.776800",
+      //     "longitude": "-117.83383"
+      //   },
+      //   "2": {
+      //     "county_name": "Benton",
+      //     "latitude" : "44.56541",
+      //     "longitude": "-123.26214"
+      //   },
+      //   "3": {
+      //     "county_name": "Clackamas",
+      //     "latitude": "45.359449",
+      //     "longitude": "-122.60234"
+      //   }
+      // }
 
       let county, marker, html;
 
       for (let key in counties) {
         county = counties[key];
+        
         marker = new google.maps.Marker({
           position: new google.maps.LatLng(county.latitude, county.longitude),
           map: map,
           title: county.county_name,
-        })
+        });
 
         html = (
           '<div class="window-content">' +
@@ -100,6 +101,7 @@ function initMap() {
 
         bindInfoWindow(marker, map, infoWindow, html);
       }
+    });
 
       function bindInfoWindow(marker, map, infoWindow, html) {
         google.maps.event.addListener(marker, 'click', function(){

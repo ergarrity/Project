@@ -29,7 +29,7 @@ class County(db.Model):
 
     __tablename__ = "counties"
 
-    county_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    county_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     county_name = db.Column(db.String(50), nullable=False)
     latitude = db.Column(db.Float, nullable=False)
     longitude = db.Column(db.Float, nullable=False) #to do change from float to string
