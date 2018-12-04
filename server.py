@@ -21,7 +21,7 @@ def index():
 
     return render_template("homepage.html")
 
-@app.route('/counties')
+@app.route('/map')
 def map():
   """Show map of Oregon with a marker for each county"""
 
@@ -32,14 +32,15 @@ def county_info_json():
   """JSON information about counties"""
 
   counties = {
-    county.marker_id: {
-    "countyId": county.county_id,
-    "latitude": county.latitude,
-    "longitude": county.longitude
-    }
-    for county in County.query.limit(50)}
+      county.marker_id: {
+      "countyId": county.county_id,
+      "latitude": latitude,
+      "longitude": longitude
+      }
+      for county in County.query.limit(20)}
 
   return jsonify(counties)
+
 
 # @app.route('/counties/all')
 # def county_info():

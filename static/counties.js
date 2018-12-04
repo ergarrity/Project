@@ -48,33 +48,50 @@ function initMap() {
 
     // Retrieving the information with AJAX
     // $.get('/counties.json', function (response) {
-    //   debugger;
+    // //   // Attach markers to each bear location in returned JSON
+    // //   // JSON looks like:
+    // //   // {
+    // //   //  "1": {
+    // //   //    "bearId": "1737",
+    // //   //    "birthYear": "1970",
+    // //   //    "capLat": "70.71139573",
+    // //   //    "capLong": "-147.8381939",
+    // //   //    "capYear": "2001",
+    // //   //    "collared": "true",
+    // //   //    "gender": "F"
+    // //   //   },...
+    // //   // }
+      
     //   let counties = response.counties;
-    //   // Attach markers to each bear location in returned JSON
-    //   // JSON looks like:
-    //   // {
-    //   //  "1": {
-    //   //    "bearId": "1737",
-    //   //    "birthYear": "1970",
-    //   //    "capLat": "70.71139573",
-    //   //    "capLong": "-147.8381939",
-    //   //    "capYear": "2001",
-    //   //    "collared": "true",
-    //   //    "gender": "F"
-    //   //   },...
-    //   // }
-    //   let county, marker, html;
 
-    //   for (let key in counties) {
-    //         county = counties[key];
+      counties = {
+        "1": {
+          "county_name": "Baker",
+          "latitude": "44.776800",
+          "longitude": "-117.83383"
+        },
+        "2": {
+          "county_name": "Benton",
+          "latitude" : "44.56541",
+          "longitude": "-123.26214"
+        },
+        "3": {
+          "county_name": "Clackamas",
+          "latitude": "45.359449",
+          "longitude": "-122.60234"
+        }
+      }
 
-    //         // Define the marker
-    //             marker = new google.maps.Marker({
-    //                 position: new google.maps.LatLng(county.capLat, county.capLong),
-    //                 map: map,
-    //                 title: county.county_name + ' County',
-    //                 // icon: '/static/img/polar.png'
-    //             });
+      let county, marker, html;
+
+      for (let key in counties) {
+        county = counties[key];
+        marker = new google.maps.Marker({
+          position: new google.maps.LatLng(county.latitude, county.longitude),
+          map: map,
+          title: county.county_name,
+        })}
+
 
     //         // Define the content of the infoWindow
     //         html = (
