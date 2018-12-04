@@ -6,24 +6,6 @@ db = SQLAlchemy()
 
 #---------------------------------------------------------------------#
 
-# class County(db.Model):
-#     """Map points for counties."""
-
-#     __tablename__ = "counties"
-
-#     marker_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-#     county_name = db.Column(db.String(64), nullable=True)
-
-
-#     def __repr__(self):
-#         """Clear representation of county."""
-
-#         repr_str = "<County={county_name} Marker ID={marker_id}>"
-#         return repr_str.format(county_name=self.county_name, marker_id=self.marker_id)
-
-
-#---------------------------------------------------------------------#
-
 class County(db.Model):
     """County in Oregon"""
 
@@ -41,6 +23,7 @@ class County(db.Model):
             self.county_id, self.county_name, self.latitude, self.longitude)
 
 
+
 class District(db.Model):
     """School districts in Oregon"""
 
@@ -51,8 +34,6 @@ class District(db.Model):
     county_id = db.Column(db.Integer, db.ForeignKey('counties.county_id'))
 
     county = db.relationship("County", backref=db.backref("districts"))
-
-
 
     def __repr__(self):
         """Provide helpful representation when printed"""
@@ -95,6 +76,7 @@ class DistrictGroup(db.Model):
     district = db.relationship("District", backref=db.backref("districtgroups", order_by=district_id))
 
 
+
 def connect_to_db(app):
     """Connect the database to Flask app."""
 
@@ -102,6 +84,7 @@ def connect_to_db(app):
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     db.app = app
     db.init_app(app)
+
 
 
 if __name__ == "__main__":

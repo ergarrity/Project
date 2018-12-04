@@ -22,10 +22,7 @@ def get_counties():
     db.session.commit()
 
 
-def get_districts(): # sort of works... getting duplicates on districts which 
-# should be taken care of by conditional in for loop. Doesn't impact
-# implementation, but would be good to figure out why this isn't working
-# the way i think it should
+def get_districts():
     """Load districts from dataset into database."""
 
     for i, row in enumerate(open('data/student_counts.csv')):

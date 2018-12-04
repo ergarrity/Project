@@ -37,50 +37,12 @@ function initMap() {
 
 
     // Define global infoWindow
-    // If you do this inside the loop where you retrieve the json,
-    // the windows do not automatically close when a new marker is clicked
-    // and you end up with a bunch of windows opened at the same time.
-    // What this does is create one infowindow and we replace the content
-    // // inside for each marker.
     let infoWindow = new google.maps.InfoWindow({
         width: 150
     });
 
     // Retrieving the information with AJAX
     $.get('/counties.json', function (counties) {
-    // //   // Attach markers to each bear location in returned JSON
-    // //   // JSON looks like:
-    // //   // {
-    // //   //  "1": {
-    // //   //    "bearId": "1737",
-    // //   //    "birthYear": "1970",
-    // //   //    "capLat": "70.71139573",
-    // //   //    "capLong": "-147.8381939",
-    // //   //    "capYear": "2001",
-    // //   //    "collared": "true",
-    // //   //    "gender": "F"
-    // //   //   },...
-    // //   // }
-      
-      // let counties = response.counties;
-
-      // counties = {
-      //   "1": {
-      //     "county_name": "Baker",
-      //     "latitude": "44.776800",
-      //     "longitude": "-117.83383"
-      //   },
-      //   "2": {
-      //     "county_name": "Benton",
-      //     "latitude" : "44.56541",
-      //     "longitude": "-123.26214"
-      //   },
-      //   "3": {
-      //     "county_name": "Clackamas",
-      //     "latitude": "45.359449",
-      //     "longitude": "-122.60234"
-      //   }
-      // }
 
       let county, marker, html;
 
