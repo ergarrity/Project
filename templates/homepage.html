@@ -32,6 +32,7 @@
 
     <br>
     <br>
+
     <div id="counties-map"></div>
 
     <h2>Statewide Statistics</h2>
@@ -45,12 +46,19 @@
 
 
     Runtime.load(notebook, (variable) => {
-      if (variable.name === "statewide_chart") return {
+      if (variable.name === "statewide_chart_solidbar") return {
         fulfilled: (value) => document.body.appendChild(value)
       };        
     });
 
-</script>
+    Runtime.load(notebook, (variable) => {
+      if (variable.name === "statewide_chart_stackedbar") return {
+        fulfilled: (value) => document.body.appendChild(value)
+      };        
+    });
+
+    </script>
+
 
     
 

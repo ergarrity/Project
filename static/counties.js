@@ -44,7 +44,7 @@ function initMap() {
 
     // Define global infoWindow
     let infoWindow = new google.maps.InfoWindow({
-        width: 150
+        width: 250
     });
 
 
@@ -64,7 +64,7 @@ function initMap() {
 
         html = (
           '<div class="window-content">' +
-                '<img src="/static/img/'+ county.county_name_lower +'.png" style="width:250px;" class="thumbnail">' +
+                '<img src="/static/img/marker-charts/'+ county.county_name_lower +'.png" style="width:250px;" class="thumbnail">' +
                 '<p><b>County: </b>' + county.county_name + '</p>' +
                 '<a href="/' + county.county_name_lower + '">' + county.county_name + ' County Statistics</a>' +
           '</div>');

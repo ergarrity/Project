@@ -77,6 +77,17 @@ class DistrictGroup(db.Model):
     district = db.relationship("District", backref=db.backref("districtgroups", order_by=district_id))
 
 
+class Student(db.Model):
+    """Individual students"""
+
+    __tablename__ = "students"
+
+    student_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    county = db.Column(db.String(50), nullable=False)
+    living_situation = db.Column(db.String(50), nullable=False)
+    year = db.Column(db.Integer)
+
+
 
 def connect_to_db(app):
     """Connect the database to Flask app."""

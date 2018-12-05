@@ -1,6 +1,6 @@
 
 
-from model import County, District, Group, DistrictGroup, connect_to_db, db
+from model import County, District, Group, DistrictGroup, Student, connect_to_db, db
 from server import app
 
 #---------------------------------------------------------------------#
@@ -87,6 +87,34 @@ def get_districtgroups():
 
     db.session.commit()
 
+def get_students():
+
+    for i, row in enumerate(open('data/student_counts.csv')):
+        data = row.rstrip().split(",")
+
+        (district_name, county_name, total_count, shelter_count, sharing_count, 
+        unsheltered_count, motel_count, year) = data
+
+        for i in range(int(shelter_count)-1):
+            student = Student(county=county_name, living_situation="shelter", year=year)
+            db.session.add(student)
+
+        for i in range(int(sharing_count)-1):
+            student = Student(county=county_name, living_situation="sharing", year=year)
+            db.session.add(student)
+
+        for i in range(int(unsheltered_count)-1):
+            student = Student(county=county_name, living_situation="unsheltered", year=year)
+            db.session.add(student)
+
+        for i in range(int(motel_count)-1):
+            student = Student(county=county_name, living_situation="motel", year=year)
+            db.session.add(student)
+
+    db.session.commit()
+
+
+
 
 
 
@@ -104,3 +132,5 @@ if __name__ == '__main__':
     get_districts()
 
     get_districtgroups()
+
+    get_students()
