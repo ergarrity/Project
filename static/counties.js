@@ -8,15 +8,15 @@ function initMap() {
   console.log("hi i loaded");
 
     //specifies center of map
-    let myLatLng = {lat: 43.921603, lng: -120.678400};
+    let myLatLng = {lat: 44.321603, lng: -120.678400};
 
     // Create a map object and specify the DOM element for display.
     let map = new google.maps.Map(document.getElementById('counties-map'), {
         center: myLatLng,
-        // scrollwheel: false,
-        zoom: 6.5,
+        scrollwheel: false,
+        zoom: 6.6,
         zoomControl: true,
-        // panControl: false,
+        panControl: true,
         // streetViewControl: false,
         // styles: MAPSTYLES,
         // mapTypeId: google.maps.MapTypeId.TERRAIN
@@ -64,8 +64,9 @@ function initMap() {
 
         html = (
           '<div class="window-content">' +
+                '<img src="/static/img/'+ county.county_name_lower +'.png" style="width:250px;" class="thumbnail">' +
                 '<p><b>County: </b>' + county.county_name + '</p>' +
-                '<a href="/' + county.county_name_lower + '">' + county.county_name + '</a>' +
+                '<a href="/' + county.county_name_lower + '">' + county.county_name + ' County Statistics</a>' +
           '</div>');
 
         bindInfoWindow(marker, map, infoWindow, html);

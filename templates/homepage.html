@@ -1,48 +1,56 @@
 {% extends "base.html" %}
 
+{% block head %}
+
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAB3vnzlRv9RGwQ9FT5BEK9MrQxJuyf4p8&callback=initMap"></script>
+  <script src="https://code.jquery.com/jquery.js"></script>
+  <script src="/static/mapstyles.js"></script>
+
+  <!--Load the AJAX API-->
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+<!--   Load dependencies for Vega-Lite (Vega-Embed, Vega, and Vega-Lite) -->
+  <script src="https://cdn.jsdelivr.net/npm/vega@4.3.0/build/vega.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@3.0.0-rc9/build/vega-lite.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@3.24.1/build/vega-embed.js"></script>
+
+
+  <script src="/static/counties.js"></script>
+
+  <style type="text/css">
+      
+      #counties-map {
+        height: 500px;
+      }
+  </style>
+
+{% endblock %}
+
 {% block content %}
 
     <h1>Oregon K-12 Student Homelessness Statistics</h1>
 
     <br>
     <br>
-    <h2>County</h2>
-    <a href="/baker">Baker</a><br>
-    <a href="/benton">Benton</a><br>
-    <a href="/clackamas">Clackamas</a><br>
-    <a href="/clatsop">Clatsop</a><br>
-    <a href="/columbia">Columbia</a><br>
-    <a href="/coos">Coos</a><br>
-    <a href="/crook">Crook</a><br>
-    <a href="/curry">Curry</a><br>
-    <a href="/deschutes">Deschutes</a><br>
-    <a href="/douglas">Douglas</a><br>
-    <a href="/gilliam">Gilliam</a><br>
-    <a href="/grant">Grant</a><br>
-    <a href="/harney">Harney</a><br>
-    <a href="/hoodriver">Hood River</a><br>
-    <a href="/jackson">Jackson</a><br>
-    <a href="/jefferson">Jefferson</a><br>
-    <a href="/josephine">Josephine</a><br>
-    <a href="/klamath">Klamath</a><br>
-    <a href="/lake">Lake</a><br>
-    <a href="/lane">Lane</a><br>
-    <a href="/lincoln">Lincoln</a><br>
-    <a href="/linn">Linn</a><br>
-    <a href="/malheur">Malheur</a><br>
-    <a href="/marion">Marion</a><br>
-    <a href="/morrow">Morrow</a><br>
-    <a href="/multnomah">Multnomah</a><br>
-    <a href="/polk">Polk</a><br>
-    <a href="/sherman">Sherman</a><br>
-    <a href="/tillamook">Tillamook</a><br>
-    <a href="/umatilla">Umatilla</a><br>
-    <a href="/union">Union</a><br>
-    <a href="/wallowa">Wallowa</a><br>
-    <a href="/wasco">Wasco</a><br>
-    <a href="/washington">Washington</a><br>
-    <a href="/wheeler">Wheeler</a><br>
-    <a href="/yamhill">Yamhill</a><br>
+    <div id="counties-map"></div>
+
+    <h2>Statewide Statistics</h2>
+
+    <script type="module">
+    // Load the Observable runtime and inspector.
+    import {Runtime, Inspector} from "https://unpkg.com/@observablehq/notebook-runtime?module";
+
+    // Observable notebook, compiled as an ES module.
+    import notebook from "https://api.observablehq.com/@ergarrity/oregon-k-12-student-homelessness-statistics.js";
+
+
+    Runtime.load(notebook, (variable) => {
+      if (variable.name === "statewide_chart") return {
+        fulfilled: (value) => document.body.appendChild(value)
+      };        
+    });
+
+</script>
 
     
 
