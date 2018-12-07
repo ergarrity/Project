@@ -6,11 +6,13 @@
 
 <!--   Add google maps api -->
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAB3vnzlRv9RGwQ9FT5BEK9MrQxJuyf4p8&callback=initMap"></script>
-  <script src="https://code.jquery.com/jquery.js"></script>
-  <script src="/static/mapstyles.js"></script>
 
-  <!--Load the AJAX API-->
-  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<!--   add jquery -->
+  <script src="https://code.jquery.com/jquery.js"></script>
+  
+<!--   add static js scripts -->
+  <script src="/static/mapstyles.js"></script>
+  <script src="/static/counties.js"></script>
 
 <!--   Load dependencies for Vega-Lite (Vega-Embed, Vega, and Vega-Lite) -->
   <script src="https://cdn.jsdelivr.net/npm/vega@4.3.0/build/vega.js"></script>
@@ -18,7 +20,7 @@
   <script src="https://cdn.jsdelivr.net/npm/vega-embed@3.24.1/build/vega-embed.js"></script>
 
 
-  <script src="/static/counties.js"></script>
+ 
 
   <style type="text/css">
       
@@ -35,6 +37,7 @@
 
     <br>
     <br>
+    <p>Click the marker icons to see statistics for each county.</p>
 
 
     <div id="counties-map"></div>
@@ -42,26 +45,48 @@
     <h2>Statewide Statistics</h2>
 
     <script type="module">
-    // Load the Observable runtime and inspector.
-    import {Runtime, Inspector} from "https://unpkg.com/@observablehq/notebook-runtime?module";
+    // Load the Observable runtime
+    import {Runtime} from "https://unpkg.com/@observablehq/notebook-runtime?module";
 
-    // Observable notebook, compiled as an ES module.
+    // Import Observable notebook, compiled as an ES module
     import notebook from "https://api.observablehq.com/@ergarrity/oregon-k-12-student-homelessness-statistics.js";
 
 
-    Runtime.load(notebook, (variable) => {
-      if (variable.name === "statewide_chart_solidbar") return {
-        fulfilled: (value) => document.body.appendChild(value)
-      };        
-    });
-
+    // Append statewide stacked bar chart to DOM body
     Runtime.load(notebook, (variable) => {
       if (variable.name === "statewide_chart_stackedbar") return {
         fulfilled: (value) => document.body.appendChild(value)
       };        
     });
 
+
+    // Append statewide line chart to DOM body
+    Runtime.load(notebook, (variable) => {
+      if (variable.name === "statewide_chart_line") return {
+        fulfilled: (value) => document.body.appendChild(value)
+      };        
+    });
+
+
+    // Append statewide multiseries line chart to DOM body
+    Runtime.load(notebook, (variable) => {
+      if (variable.name === "statewide_chart_line_situation") return {
+        fulfilled: (value) => document.body.appendChild(value)
+      };        
+    });
+
+
+    // Append % change chart to DOM body
+    Runtime.load(notebook, (variable) => {
+      if (variable.name === "statewide_percentages_chart") return {
+        fulfilled: (value) => document.body.appendChild(value)
+      };        
+    });
+
+
     </script>
+
+
 
 
     

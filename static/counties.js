@@ -1,11 +1,5 @@
-// Load the Visualization API and the corechart package.
-google.charts.load('current', {'packages':['corechart']});
-
-// Set a callback to run when the Google Visualization API is loaded.
-// google.charts.setOnLoadCallback(drawChart);
 
 function initMap() {
-  console.log("hi i loaded");
 
     //specifies center of map
     let myLatLng = {lat: 44.321603, lng: -120.678400};
@@ -17,9 +11,8 @@ function initMap() {
         zoom: 6.6,
         zoomControl: true,
         panControl: true,
-        // streetViewControl: false,
-        // styles: MAPSTYLES,
-        // mapTypeId: google.maps.MapTypeId.TERRAIN
+        streetViewControl: false,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
     });
 
     // --------------------------------------------------------------//
@@ -65,7 +58,7 @@ function initMap() {
         html = (
           '<div class="window-content">' +
                 '<img src="/static/img/marker-charts/'+ county.county_name_lower +'.png" style="width:350px;" class="thumbnail">' +
-                '<p><b>County: </b>' + county.county_name + '</p>' +
+                '<p><b>' + county.county_name + ' County </b></p>' +
                 '<a href="/' + county.county_name_lower + '">' + county.county_name + ' County Statistics</a>' +
           '</div>');
 

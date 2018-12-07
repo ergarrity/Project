@@ -12,7 +12,7 @@ from os import environ
 
 
 app = Flask(__name__)
-app.secret_key = "verysecret"
+app.secret_key = "hgaiuhaofjaieurvhaoierbb"
 app.jinja_env.undefined = StrictUndefined
 
 #---------------------------------------------------------------------#
