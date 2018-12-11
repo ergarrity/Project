@@ -7,10 +7,10 @@
 <!--   Add google maps api -->
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAB3vnzlRv9RGwQ9FT5BEK9MrQxJuyf4p8&callback=initMap"></script>
 
-<!--   add jquery -->
+<!--   Add jquery -->
   <script src="https://code.jquery.com/jquery.js"></script>
   
-<!--   add static js scripts -->
+<!--   Add static js scripts -->
   <script src="/static/mapstyles.js"></script>
   <script src="/static/counties.js"></script>
 
@@ -28,21 +28,53 @@
         height: 500px;
       }
   </style>
+  <style>
+    h1 {
+      font-size: 70px;
+      font-weight: 800;
+    }
+    h2 {
+      font-weight: lighter-bold;
+      font-size: 20px;
+    }
+
+    h4{
+      font-size: 40px;
+      font-weight: 800;
+    }
+
+    p {
+      font-size: 15px;
+    }
+
+    #above-stats {
+      background-color: #006699;
+      color: white;
+    }
+
+  </style>
 
 {% endblock %}
 
 {% block content %}
-
-    <h1>Oregon K-12 Student Homelessness Statistics</h1>
-
-    <br>
-    <br>
-    <p>Click the marker icons to see statistics for each county.</p>
+<div id="above-stats">
+<header>
+  <h1><strong>At Home in Oregon</strong></h1>
+</header>
+    <h2><em>A visual display of K-12 student homelessness statistics for the state of Oregon.</em></h2>
+    <br><br><br>
+    <h3>Click the marker icons to see statistics for each county.</h3>
 
 
     <div id="counties-map"></div>
+    <p>Data provided by the Oregon Department of Education. Student counts of less 
+    than 5 have been suppressed to protect student confidentiality.</p>
+</div>
 
-    <h2>Klamath County Statistics</h2>
+    <br>
+    <br>
+
+    <h4>Klamath County Statistics</h4>
 
     <script type="module">
     // Load the Observable runtime

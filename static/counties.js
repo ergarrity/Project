@@ -15,26 +15,6 @@ function initMap() {
         mapTypeId: google.maps.MapTypeId.ROADMAP
     });
 
-    // --------------------------------------------------------------//
-    // --------------------------------------------------------------//
-    // If you want to create a StyledMapType to make a map type control
-    // create it like this:
-
-    // Create a new StyledMapType object, passing it the array of styles,
-    // as well as the name to be displayed on the map type control.
-    // let styledMap = new google.maps.StyledMapType(
-    //     MAPSTYLES,
-    //     {name: "Custom Style"}
-    // );
-    // You would then set 'styles' in the mapoptions to 'styledMap'
-
-    // Associate the styled map with the MapTypeId and set it to display.
-    // map.mapTypes.set('map_style', styledMap);
-    // map.setMapTypeId('map_style');
-    // --------------------------------------------------------------//
-    // --------------------------------------------------------------//
-
-
     // Define global infoWindow
     let infoWindow = new google.maps.InfoWindow({
         width: 250
