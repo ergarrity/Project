@@ -59,7 +59,7 @@ function initMap() {
           '<div class="window-content">' +
                 '<img src="/static/img/marker-charts/'+ county.county_name_lower +'.png" style="width:350px;" class="thumbnail">' +
                 '<p> </p>' +
-                '<a href="/' + county.county_name_lower + '">' + county.county_name + ' County Statistics</a>' +
+                '<a href="/' + county.county_name_lower + '">' + county.county_name + ' County Detailed Statistics</a>' +
           '</div>');
 
         bindInfoWindow(marker, map, infoWindow, html);
