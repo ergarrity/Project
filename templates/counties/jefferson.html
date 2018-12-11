@@ -1,23 +1,92 @@
 {% extends "base.html" %}
 
+{% block head %}
+<!--   Add bootstrap -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+<!--   Add google maps api -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAB3vnzlRv9RGwQ9FT5BEK9MrQxJuyf4p8&callback=initMap"></script>
+
+<!--   add jquery -->
+  <script src="https://code.jquery.com/jquery.js"></script>
+  
+<!--   add static js scripts -->
+  <script src="/static/mapstyles.js"></script>
+  <script src="/static/counties.js"></script>
+
+<!--   Load dependencies for Vega-Lite (Vega-Embed, Vega, and Vega-Lite) -->
+  <script src="https://cdn.jsdelivr.net/npm/vega@4.3.0/build/vega.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@3.0.0-rc9/build/vega-lite.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@3.24.1/build/vega-embed.js"></script>
+
+
+ 
+
+  <style type="text/css">
+      
+      #counties-map {
+        height: 500px;
+      }
+  </style>
+
+{% endblock %}
+
 {% block content %}
 
-<script type="module">
-  // Load the Observable runtime and inspector.
-  import {Runtime, Inspector} from "https://unpkg.com/@observablehq/notebook-runtime?module";
+    <h1>Oregon K-12 Student Homelessness Statistics</h1>
 
-  // Your notebook, compiled as an ES module.
-  import notebook from "https://api.observablehq.com/@ergarrity/oregon-k-12-student-homelessness-statistics.js";
+    <br>
+    <br>
+    <p>Click the marker icons to see statistics for each county.</p>
 
-  Runtime.load(notebook, (variable) => {
-  if (variable.name === "jefferson_chart") return {
-    fulfilled: (value) => document.body.appendChild(value)
-  };        
-});
 
-</script>
+    <div id="counties-map"></div>
 
-    <h1>Jefferson County Statistics</h1>
+    <h2>Jefferson County Statistics</h2>
+
+    <script type="module">
+    // Load the Observable runtime
+    import {Runtime} from "https://unpkg.com/@observablehq/notebook-runtime?module";
+
+    // Import Observable notebook, compiled as an ES module
+    import notebook from "https://api.observablehq.com/@ergarrity/oregon-k-12-student-homelessness-statistics.js";
+
+
+    // Append statewide stacked bar chart to DOM body
+    Runtime.load(notebook, (variable) => {
+      if (variable.name === "jefferson_chart_stackedbar") return {
+        fulfilled: (value) => document.body.appendChild(value)
+      };        
+    });
+
+
+    // Append statewide line chart to DOM body
+    Runtime.load(notebook, (variable) => {
+      if (variable.name === "jefferson_chart_line") return {
+        fulfilled: (value) => document.body.appendChild(value)
+      };        
+    });
+
+
+    // Append statewide multiseries line chart to DOM body
+    Runtime.load(notebook, (variable) => {
+      if (variable.name === "jefferson_chart_multiline") return {
+        fulfilled: (value) => document.body.appendChild(value)
+      };        
+    });
+
+
+    // Append % change chart to DOM body
+    Runtime.load(notebook, (variable) => {
+      if (variable.name === "jefferson_chart_percentages") return {
+        fulfilled: (value) => document.body.appendChild(value)
+      };        
+    });
+
+
+    </script>
+
+
 
 
     

@@ -23,11 +23,6 @@ def index():
 
     return render_template("homepage.html")
 
-@app.route('/map')
-def map():
-  """Show map of Oregon with a marker for each county"""
-
-  return render_template("map.html")
 
 @app.route('/counties.json')
 def county_info_json():

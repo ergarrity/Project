@@ -58,7 +58,7 @@ function initMap() {
         html = (
           '<div class="window-content">' +
                 '<img src="/static/img/marker-charts/'+ county.county_name_lower +'.png" style="width:350px;" class="thumbnail">' +
-                '<p><b>' + county.county_name + ' County </b></p>' +
+                '<p> </p>' +
                 '<a href="/' + county.county_name_lower + '">' + county.county_name + ' County Statistics</a>' +
           '</div>');
 
