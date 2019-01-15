@@ -7,12 +7,10 @@ from model import connect_to_db, db, County, District, Group, DistrictGroup
 from os import environ
 
 MAPS_KEY = environ["MAPS_KEY"]
-
-
-
+FLASK_SECRET_KEY = environ["FLASK_SECRET_KEY"]
 
 app = Flask(__name__)
-app.secret_key = "hgaiuhaofjaieurvhaoierbb"
+app.secret_key = FLASK_SECRET_KEY
 app.jinja_env.undefined = StrictUndefined
 
 #---------------------------------------------------------------------#
