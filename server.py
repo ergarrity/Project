@@ -6,9 +6,9 @@ from model import connect_to_db, db, County, District, Group, DistrictGroup
 
 from os import environ
 
-# MAPS_KEY = environ["MAPS_KEY"]
+MAPS_KEY = environ["MAPS_KEY"]
 
-# print(MAPS_KEY)
+
 
 
 app = Flask(__name__)
@@ -323,7 +323,7 @@ def yamhill_stats():
 
 
 if __name__ == "__main__":
-  app.debug = True
+  # app.debug = True
   connect_to_db(app)
   DebugToolbarExtension(app)
-  app.run(host='0.0.0.0', port=5000)
+  app.run(host='0.0.0.0', port=6000)
