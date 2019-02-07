@@ -27,3 +27,10 @@ If a user would like to further investigate trends in a particular county, they 
 
 # <img src="static/readme/county_details.gif">
 
+## Tech Stack
+
+At Home in Oregon was developed using a Python/Flask framework and a PostgreSQL database. The map was written in JavaScript using the Google Maps API and the markers were placed by using an AJAX request to the PostgreSQL database. The response object from the AJAX request contained latitude and longitude data for each county, and markers were placed by looping over this object and using the location data to create the markers.
+
+The charts were created using Vega and Vega-lite and they were hosted independently in an Observable notebook. Charts were appended to the DOM using a JavaScript callback function that selects and appends the appropriate chart from the notebook at runtime. 
+
+This independent hosting of charts essentially means that as the developer, I have the ability to change the display of charts within the Observable notebook and those changes will be live as soon as I publish the notebook and without touching the code in my repository in any way. While this feature doesn't necessarily bring much value to this particular project, it has interesting implications for data visualization work within larger organizations. I imagine a potential scenario where employee A is responsible for developing a range of visualizations that may be applicable to a host of projects within an organization and does so in a centralized way using an Observable notebook. If employee B would like to use one of the visualizations that employee A has developed in a project, all employee B would need is the public URL to the notebook containing the visualizations. Employee B could append any single chart (or multiple charts) from that notebook using the public URL, and if employee A subsequently makes adjustments to the chart employee B is using, those changes will be live immediately. Exploring this idea and the potential uses of Observable notebooks for data visualization was one of my favorite pieces of this project to work on.
